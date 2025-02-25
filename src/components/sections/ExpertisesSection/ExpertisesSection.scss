@@ -1,0 +1,86 @@
+.expertises-section {
+  text-align: center;
+  padding: 40px;
+  color: #fff;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .technologies-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+
+  .technology-card {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #FFFFFF26;
+    padding: 16px;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+      background: #1F6AFF1A;
+      border: 1px solid #1F6AFF;
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: bold;
+      color: #c9d1d9;
+    }
+  }
+
+  .icon-wrapper {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      filter: grayscale(100%) brightness(0.7);
+      transition: filter 0.3s ease-in-out;
+    }
+  }
+
+  .technology-card:hover .icon-wrapper img {
+    filter: grayscale(0%) brightness(1);
+  }
+
+  @media (max-width: 768px) {
+    .technologies-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+
+    .technology-card {
+      width: calc(40% - 10px);
+      margin-bottom: 10px;
+    }
+
+    .technology-card.next-card {
+      width: calc(40% - 10px);
+    }
+
+    .icon-wrapper img {
+      filter: grayscale(0%) brightness(1);
+    }
+  }
+
+}

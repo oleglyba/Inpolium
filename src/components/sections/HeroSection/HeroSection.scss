@@ -1,0 +1,21 @@
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 40vh;
+  padding: 2rem;
+
+  h1 {
+    /* Responsive font size for different screen widths */
+    font-size: clamp(32px, calc(4vw + 1rem), 130px);
+    font-weight: 600;
+    line-height: 1.1;
+    color: #ffffff;
+    margin: 0;
+
+    .highlight {
+      color: #1F6AFF;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "short_name": "Inpolium",
+  "name": "Inpolium | Expert Data Scraping & Web Development",
+  "icons": [
+    {
+      "src": "icon/logo/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon/logo/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon/logo/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
