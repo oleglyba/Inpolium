@@ -158,6 +158,15 @@
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
+  .success-message {
+    font-size: 12px;
+    color: #D9D9DA;
+    font-weight: 600;
+    text-align: center;
+    display: block;
+    width: 100%;
+
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

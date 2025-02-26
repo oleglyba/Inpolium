@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ContactSection.scss";
 import Button from "../../ui/Button/Button";
 import useGoogleSheetSubmission from "../../hooks/useGoogleSheetSubmission";
@@ -6,7 +6,19 @@ import useGoogleSheetSubmission from "../../hooks/useGoogleSheetSubmission";
 const ContactSection = () => {
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
     const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const { sendToGoogleSheet, buttonText, errorMessage, setErrorMessage } = useGoogleSheetSubmission();
+
+    // Визначення мобільного пристрою за шириною вікна
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,9 +41,15 @@ const ContactSection = () => {
         }
 
         try {
-            await sendToGoogleSheet(formData); // Wait for the promise to resolve
+            await sendToGoogleSheet(formData);
             setFormData({ name: "", email: "", message: "" });
             setHasAttemptedSubmit(false);
+
+            // Показуємо повідомлення про успіх для всіх пристроїв
+            setIsSubmitted(true);
+            setTimeout(() => {
+                setIsSubmitted(false);
+            }, 3000);
         } catch (error) {
             setErrorMessage("Error submitting the form. Please try again.");
             console.error("Error submitting form:", error);
@@ -87,15 +105,23 @@ const ContactSection = () => {
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
 
                     <div className="form-footer">
-                        <p className="privacy-text">
-                            By signing this form you agree to our{" "}
-                            <a href="/privacy-policy" target="_blank" rel="noreferrer" style={{ color: "#ffffff" }}>
-                                Privacy Policy
-                            </a>
-                        </p>
-                        <Button className="btn-submit" type="submit" variant="submit">
-                            {buttonText}
-                        </Button>
+                        {isSubmitted ? (
+                            <p className="success-message">
+                                ✨ Success! Your request is submitted. We’ll get back to you soon!
+                            </p>
+                        ) : (
+                            <>
+                                <p className="privacy-text">
+                                    By signing this form you agree to our{" "}
+                                    <a href="/privacy-policy" target="_blank" rel="noreferrer" style={{ color: "#ffffff" }}>
+                                        Privacy Policy
+                                    </a>
+                                </p>
+                                <Button className="btn-submit" type="submit" variant="submit">
+                                    {buttonText}
+                                </Button>
+                            </>
+                        )}
                     </div>
                 </form>
             </div>
