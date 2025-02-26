@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./ContactSection.scss";
 import Button from "../../ui/Button/Button";
 import useGoogleSheetSubmission from "../../hooks/useGoogleSheetSubmission";
@@ -7,18 +7,7 @@ const ContactSection = () => {
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
     const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
     const { sendToGoogleSheet, buttonText, errorMessage, setErrorMessage } = useGoogleSheetSubmission();
-
-    // Визначення мобільного пристрою за шириною вікна
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,13 +32,12 @@ const ContactSection = () => {
         try {
             await sendToGoogleSheet(formData);
             setFormData({ name: "", email: "", message: "" });
-            setHasAttemptedSubmit(false);
-
-            // Показуємо повідомлення про успіх для всіх пристроїв
             setIsSubmitted(true);
+            setHasAttemptedSubmit(false);
+            // Показуємо повідомлення протягом 4 секунд, після чого повертаємо звичайний вигляд
             setTimeout(() => {
                 setIsSubmitted(false);
-            }, 3000);
+            }, 4000);
         } catch (error) {
             setErrorMessage("Error submitting the form. Please try again.");
             console.error("Error submitting form:", error);
