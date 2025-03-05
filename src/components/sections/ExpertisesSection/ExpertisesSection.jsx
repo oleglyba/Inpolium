@@ -1,6 +1,7 @@
 import React from 'react';
 import './ExpertisesSection.scss';
 import useIsMobile from '../../hooks/useIsMobile';
+import ExpertisesLabel from "../../component/ExpertisesLabel";
 
 const techData = [
     { src: "/icon/ExpertisesSection/python.svg", alt: "Python", label: "Python" },
@@ -27,12 +28,14 @@ const ExpertisesSection = ({ id }) => {
 
     return (
         <section id={id} className="expertises-section">
+            <ExpertisesLabel text=".expertises" />
             <h2>Our Core Technologies</h2>
             <div className="technologies-row">
                 {techData.map(renderCard)}
             </div>
         </section>
     );
+
 };
 
 export default ExpertisesSection;

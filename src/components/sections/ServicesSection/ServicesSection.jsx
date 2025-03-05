@@ -4,12 +4,6 @@ import './ServicesSection.scss';
 const ServicesSection = ({ id }) => {
     return (
         <section id={id} className="services-section">
-            <h2>What We Offer</h2>
-            <p className="services-intro">
-                We deliver end-to-end software development, from ideation to deployment.
-                Our custom solutions enhance efficiency, scalability, and innovation for
-                businesses worldwide.
-            </p>
 
             <div className="services-grid">
                 <div className="service-card">

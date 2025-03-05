@@ -1,9 +1,12 @@
 import React from 'react';
 import './ProjectsSection.scss';
+import ExpertisesLabel from "../../component/ExpertisesLabel";
 
 const ProjectsSection = ({ id }) => {  // Додаємо пропс id
     return (
         <section id={id} className="projects-section"> {/* Додаємо id */}
+            <ExpertisesLabel text=".projects" />
+
             <h2>Success Stories</h2>
 
             <div className="projects-grid">

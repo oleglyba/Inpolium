@@ -34,13 +34,11 @@ const ContactSection = () => {
             setFormData({ name: "", email: "", message: "" });
             setIsSubmitted(true);
             setHasAttemptedSubmit(false);
-            // Показуємо повідомлення протягом 4 секунд, після чого повертаємо звичайний вигляд
             setTimeout(() => {
                 setIsSubmitted(false);
             }, 4000);
         } catch (error) {
             setErrorMessage("Error submitting the form. Please try again.");
-            console.error("Error submitting form:", error);
         }
     };
 

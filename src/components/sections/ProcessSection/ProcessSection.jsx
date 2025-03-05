@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './ProcessSection.scss';
 import useIsMobile from '../../hooks/useIsMobile';
+import ExpertisesLabel from "../../component/ExpertisesLabel";
 
 const ProcessSection = ({ id }) => {
     const steps = [
@@ -51,7 +52,6 @@ const ProcessSection = ({ id }) => {
     return (
         <section id={id} className="process-section">
             {isMobile ? (
-                // Мобільна версія
                 <div className="process-grid mobile">
                     {steps.map((step, index) => (
                         <div key={index} className="process-item">
@@ -73,9 +73,10 @@ const ProcessSection = ({ id }) => {
                     ))}
                 </div>
             ) : (
-                // ПК-версія
                 <div className="process-grid">
                     <div className="process-steps">
+                        <ExpertisesLabel text=".process" />
+
                         <h2>From Idea to Launch</h2>
                         <ol className="process-list">
                             {steps.map((step, index) => {
